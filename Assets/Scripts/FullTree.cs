@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FullTree : MonoBehaviour
@@ -8,13 +6,7 @@ public class FullTree : MonoBehaviour
     public bool timeractive;
 
     public GameObject DestoryedTree;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if (timeractive)

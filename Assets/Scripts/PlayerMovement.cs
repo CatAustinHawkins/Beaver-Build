@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -10,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 10f; //Controls velocity multiplier
 
     Rigidbody2D rb; //Tells script there is a rigidbody, we can use variable rb to reference it in further script
-    private Vector2 targetPos;
 
     public AudioSource DamBuilding;
     public AudioSource TreeDestroy;
@@ -54,21 +51,21 @@ public class PlayerMovement : MonoBehaviour
         {
             float xMove = Input.GetAxisRaw("Horizontal"); // d key changes value to 1, a key changes value to -1
 
-            rb.velocity = new Vector3(xMove, 0, 0) * speed; // Creates velocity in direction of value equal to keypress (WASD). rb.velocity.y deals with falling + jumping by setting velocity to y. 
+            rb.velocity = new Vector3(xMove, 0, 0) * speed;
         }
         else
         {
-            rb.velocity = new Vector3(0, 0, 0); // Creates velocity in direction of value equal to keypress (WASD). rb.velocity.y deals with falling + jumping by setting velocity to y. 
+            rb.velocity = new Vector3(0, 0, 0); //if building or destorying tree, don't move
         }
 
         if (!DestroyingTree && !BuildingDam && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
-            PlayerAnims.Play("BeaverIdle");
+            PlayerAnims.Play("BeaverIdle"); //if not building/destroying or moving, play idle anim
         }
         
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) && !DestroyingTree && !BuildingDam)
         {
-            PlayerAnims.Play("BeaverWalk");
+            PlayerAnims.Play("BeaverWalk"); //if walking, play walking anim
         }
 
         if(Input.GetKey(KeyCode.A) && !DestroyingTree && !BuildingDam)
@@ -89,7 +86,6 @@ public class PlayerMovement : MonoBehaviour
         if (timeractive1)
         {
             timer1 = timer1 + 1 * Time.deltaTime;
-
         }
 
         if (timeractive2)
@@ -270,7 +266,5 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
-
 
 }
